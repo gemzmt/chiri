@@ -1,0 +1,21 @@
+{
+  "extends": ["plugin:@nrwl/nx/react", "../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "parserOptions": {
+        "project": ["libs/chirimoya-react/tsconfig.*?.json", "libs/chirimoya-react/.storybook/tsconfig.json"]
+      },
+      "rules": {}
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+@import '../../styles/global.scss';
+
+$colors-component: (
+  'complementary-red',
+  'label-primary',
+  'label-secondary',
+  'label-tertiary',
+  'label-quaternary'
+);
+
+@include get-colors-theme($colors-component);
+
+* {
+  outline: 0;
+}
+.primary {
+  color: var(--label-primary);
+}
+.secondary {
+  color: var(--label-secondary);
+}
+.tertiary {
+  color: var(--label-tertiary);
+}
+.quaternary {
+  color: var(--label-quaternary);
+}
+.text-field-container {
+  background-color: unset;
+  display: flex;
+  align-items: center;
+}
+.text-field-body {
+  position: relative;
+  flex: 1 1 80%;
+  background-color: inherit;
+}
+.text-field-input {
+  width: 100%;
+  font-size: 17px;
+  background-color: inherit;
+  line-height: 22px;
+  border: none;
+  &.label-active {
+    padding: 21px 0 12px 0;
+    border-bottom: 2px solid transparent;
+    margin-bottom: 3px;
+    &:focus, &.input-active, &.input-error, &.label-static {
+      padding: 30px 0 3px 0;
+      & ~ .text-field-label {
+        transform: translateY(-10px);
+        font-size: 15px;
+      }
+    }
+  }
+  &.input-error {
+    border-color: var(--complementary-red);
+    & ~ .text-field-label {
+      color: var(--complementary-red);
+    }
+  }
+  &:disabled {
+    color: var(--label-quaternary);
+    & ~ .text-field-label {
+      color: var(--label-quaternary);
+    }
+    &.input-error {
+      & ~ .text-field-label {
+        color: var(--complementary-red);
+      }
+    }
+  }
+}
+.text-field-label {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  font-size: 17px;
+  line-height: 22px;
+}

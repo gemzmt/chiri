@@ -1,0 +1,87 @@
+// Create css vars for colors
+// Example output --label-primary-light-color
+@mixin css-vars-colors($sufix: color) {
+  @each $nameTheme, $themeValue in $colors {
+    $theme: map-get($colors, $nameTheme);
+
+    @each $name, $value in $theme {
+      --#{$name}-#{$nameTheme}-#{$sufix}: #{$value};
+    }
+  }
+}
+
+// Create css vars for typography
+@mixin css-vars-typography($sufix: font) {
+  // Types
+  // Exmple --title-2-letter-spacing-font
+  $types: map-get($fonts, types);
+
+  @each $nameType, $typeValues in $types {
+    $type: map-get($fonts, types, $nameType);
+
+    @each $nameValue, $value in $type {
+      --#{$nameType}-#{$nameValue}-#{$sufix}: #{$value};
+    }
+  }
+
+  // Weights Fonts All types
+  // Exmple --ultra-light-weight-font
+  $weights: map-get($fonts, weights);
+
+  @each $nameWeight, $value in $weights {
+    --#{"" + $nameWeight}-#{weight}-#{$sufix}: #{$value};
+  }
+}
+
+// Use @include get-font-style('title-1', 'medium');
+
+@mixin get-font-style($type, $weight) {
+  font-size: map-get($fonts, types, $type, 'font-size');
+  font-weight: map-get($fonts, weights, $weight);
+  letter-spacing: map-get($fonts, types, $type, 'letter-spacing');
+  line-height: map-get($fonts, types, $type, 'line-height');
+}
+
+@mixin apply-theme($names, $theme) {
+  @each $name in $names {
+    --#{$name}: #{get-color($name, $theme)};
+  }
+}
+
+// Add vars css with dark theme options to the host element
+// Use @include get-colors-theme(('label'-primary', 'label-secondary'));
+/*
+  Output:
+    :host { --label-primary: #000000; --label-secondary: #555555; }
+    :host-context(chirimoya-theme[theme="dark"]) { --label-primary: #111111; --label-secondary: #666666; }
+*/
+@mixin get-colors-theme($names) {
+  :host {
+    @include apply-theme($names, 'light');
+  }
+
+  :host-context(chirimoya-theme[theme='dark']) {
+    @include apply-theme($names, 'dark');
+  }
+}
+
+/**
+ * Add vars css with dark theme options to the parent element. Use sparingly.
+ *
+ * Usage:
+ * .foo { @include apply(('label'-primary', 'label-secondary')); }
+ *
+ * Output:
+ * .foo { --label-primary: #000000; --label-secondary: #555555; }
+ * chirimoya-theme[theme="dark"] .foo { --label-primary: #111111; --label-secondary: #666666; }
+ * :host-context(chirimoya-theme[theme="dark"]) .foo { --label-primary: #111111; --label-secondary: #666666; }
+ *
+ */
+@mixin apply-colors($names) {
+  @include apply-theme($names, 'light');
+
+  :host-context(chirimoya-theme[theme='dark']) &,
+  chirimoya-theme[theme='dark'] & {
+    @include apply-theme($names, 'dark');
+  }
+}

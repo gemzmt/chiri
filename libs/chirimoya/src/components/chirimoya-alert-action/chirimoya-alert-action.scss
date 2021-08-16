@@ -1,0 +1,57 @@
+@import '../../styles/global.scss';
+@import '../../utils/internals/button.scss';
+
+$component-colors: ('fill-quaternary', 'separator-primary', 'label-primary', 'tint', 'complementary-red');
+
+// this is a full width button by default, you can modify that by setting display: inline-flex into the host.
+
+.chirimoya-alert-action {
+  @include apply-colors($component-colors);
+  @include get-font-style('body', 'medium');
+
+  min-height: 38px;
+  display: block;
+
+  &-content {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  // role = 'normal'
+  &.is-normal {
+    color: var(--label-primary);
+    background-color: var(--fill-quaternary);
+
+    &:hover {
+      border-color: var(--separator-primary);
+    }
+  }
+
+  // role = 'primary'
+  &.is-primary {
+    color: #fff; //FIX fix this with the right variable
+    background-color: var(--tint);
+
+    &::before {
+      inset: -6px;
+      border-radius: 12px;
+    }
+  }
+
+  // role = 'destructive'
+  &.is-destructive {
+    color: var(--complementary-red);
+    background-color: var(--fill-quaternary);
+
+    &:hover {
+      border-color: var(--complementary-red);
+    }
+
+    &::before {
+      inset: -6px;
+      border-radius: 12px;
+    }
+  }
+}

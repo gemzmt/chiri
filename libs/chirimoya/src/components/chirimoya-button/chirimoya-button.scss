@@ -1,0 +1,26 @@
+// Extends the base button look and structural props
+@import '../../utils/internals/button.scss';
+
+// You're free to modify the .base-button class or add another class
+// to change whatever you want here
+
+// Note that you can change the size of the button modifying the host class, because the Base button will always fit it's parent element.
+.chirimoya-button-host {
+  display: inline-flex;
+  position: relative;
+  &.chirimoya-button-host-fullwidth {
+    display: flex;
+  }
+}
+.chirimoya-button {
+  font-size: 16px;
+  min-height: 34px;
+
+  primaries-icon[slot='leading'] {
+    margin-right: 8px;
+  }
+
+  primaries-icon[slot='trailing'] {
+    margin-left: 8px;
+  }
+}

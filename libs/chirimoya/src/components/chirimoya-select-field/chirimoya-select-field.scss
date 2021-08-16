@@ -1,0 +1,74 @@
+@import '../../styles/global.scss';
+
+$colors-component: ('label-primary', 'label-tertiary', 'label-quaternary','complementary-red', 'fill-secondary');
+
+@include get-colors-theme($colors-component);
+
+.select-field {
+  background-color: transparent;
+
+  ::slotted(*) {
+    display: none;
+  }
+
+  primaries-icon {
+    pointer-events: none;
+  }
+
+  &-label {
+    padding-bottom: 5px;
+    margin-bottom: 3px;
+    line-height: 20px;
+    font-size: 15px;
+    color: var(--label-tertiary);
+    padding-top: 10px;
+    &-active {
+      display: block;
+    }
+  }
+  &-error {
+    padding-bottom: 5px;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--complementary-red);
+    }
+  }
+  &-disabled {
+    .chirimoya-select,
+    .select-field-label {
+      color: var(--label-quaternary)
+    }
+  }
+  &-fullwidth {
+    display: block;
+    .chirimoya-select {
+      width: 100%;
+    }
+  }
+}
+
+.chirimoya-select {
+  appearance: none;
+  line-height: 22px;
+  font-size: 17px;
+  color: var(--label-primary);
+  padding: 0 21px 0 0;
+  border: none;
+  outline: 0;
+  &-wrapper {
+    position: relative;
+    box-sizing: border-box;
+    display: inline-flex;
+  }
+  &-arrow {
+    color: var(--fill-secondary);
+    position: absolute;
+    right: 1px;
+    top: 3px;
+  }
+}

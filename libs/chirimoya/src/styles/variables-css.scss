@@ -1,0 +1,11 @@
+@import "./colors";
+@import "./typography";
+@import "./mixins";
+
+:root {
+  // Color css var --${name-variable}-#{theme}-color:#24292E; example: --label-primary-light-color:#24292E;
+  @include css-vars-colors();
+
+  // Color css var --${name-variable}-#{theme}-color:#24292E; example: --label-primary-light-color:#24292E;
+  @include css-vars-typography();
+}

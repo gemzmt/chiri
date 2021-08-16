@@ -1,0 +1,68 @@
+@import '../../styles/global.scss';
+
+$colors-component: ('fill-quaternary', 'focus-ring', 'label-quaternary');
+
+.base-button {
+  @include apply-colors($colors-component);
+
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 8px;
+  border-style: solid;
+  border-color: transparent;
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+
+  // Highlighted
+
+  &:hover {
+    background-color: var(--fill-quaternary);
+  }
+
+  // Focus ring
+  &::before {
+    content: '';
+    position: absolute;
+    border: 2px solid var(--focus-ring);
+    inset: -2px;
+    border-radius: inherit;
+    opacity: 0;
+  }
+
+  &:focus {
+    outline: none;
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  // Children
+  .base-button-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // Content alignment modifiers
+  &.align-center {
+    justify-content: center;
+  }
+
+  &.align-left {
+    justify-content: flex-start;
+  }
+
+  &.align-right {
+    justify-content: flex-end;
+  }
+
+  // State modifiers
+  &.is-disabled {
+    color: var(--label-quaternary);
+    background-color: var(--fill-quaternary);
+  }
+}

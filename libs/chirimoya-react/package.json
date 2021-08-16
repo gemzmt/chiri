@@ -1,0 +1,12 @@
+{
+  "name": "@cornershop/chirimoya-react",
+  "version": "0.0.1",
+  "description": "Chirimoya for react",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cornershop/chirimoya.git"
+  },
+  "scripts": {
+    "cornershop-publish": "../../../node_modules/.bin/cs-npm-s3 publish"
+  }
+}

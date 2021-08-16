@@ -1,0 +1,33 @@
+@import '../../styles/global.scss';
+
+.toolbar-container {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid get-color('separator-primary', 'light');
+  width: 100%;
+  min-height: 51px;
+  align-items: center;
+  padding: 0 66px;
+}
+
+.toolbar-trailing,
+.toolbar-leading {
+  display: flex;
+  justify-content: space-between;
+}
+
+::slotted(*) {
+  margin: 0 5px;
+}
+
+@media only screen and (max-width: 768px) {
+  .toolbar-container {
+    flex-direction: column;
+    padding: 0 29px;
+  }
+  .toolbar-trailing,
+  .toolbar-leading {
+    display: flex;
+    justify-content: flex-start;
+  }
+}

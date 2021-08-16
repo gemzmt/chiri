@@ -1,0 +1,163 @@
+@import '../../styles/global.scss';
+@import '../../utils/internals/button.scss';
+
+$colors-component: (
+  'separator-primary',
+  'fill-tertiary',
+  'fill-secondary',
+  'fill-quaternary',
+  'tint',
+  'label-primary',
+  'label-quaternary'
+);
+
+// this is a full width button by default, you can modify that by setting display: inline-flex into the host.
+.chirimoya-navigation-item {
+  @include apply-colors($colors-component);
+  @include get-font-style('callout', 'medium');
+
+  min-height: 34px;
+
+  ::slotted(*) {
+    pointer-events: none;
+  }
+
+  ::slotted(primaries-icon[slot='leading']) {
+    margin-right: 8px;
+  }
+
+  ::slotted(primaries-icon[slot='trailing']) {
+    margin-left: 8px;
+  }
+
+  // Icon inherits the color of the button most of times
+  ::slotted(primaries-icon) {
+    color: inherit;
+  }
+
+  // General rules for disabled state (these apply to all combinations of variants and roles and stuff)
+  &.is-disabled {
+    color: var(--label-quaternary) !important;
+    cursor: not-allowed;
+
+    ::slotted(primaries-icon) {
+      color: var(--fill-quaternary) !important;
+    }
+
+    &.is-selected {
+      background-color: var(--fill-quaternary) !important;
+    }
+  }
+
+  // General rules for elements with `inline`. `inline` and `label` look exactly the same, except
+  // `inline` doesn't have text content. We'll define the styles for both down below. For now we'll
+  // reset the margin for icons here.
+  &.is-inline {
+    slot {
+      display: none;
+    }
+
+    slot[name='trailing'],
+    slot[name='leading'] {
+      display: inline-flex !important;
+    }
+
+    ::slotted(primaries-icon) {
+      margin: auto;
+    }
+  }
+
+  // --- Roles and variants ---
+
+  // navRole == 'normal'
+  &.is-normal {
+    color: var(--label-primary);
+
+    // navRole == 'normal' & variant == 'bordered'
+    &.is-bordered {
+      border-color: var(--separator-primary);
+
+      // hover is used for highlighted (not sure though)
+      &:hover {
+        background-color: transparent;
+        border-color: var(--fill-tertiary);
+      }
+
+      &.is-selected {
+        background-color: var(--fill-quaternary);
+      }
+      &.is-selected.is-disabled {
+        background-color: var(--fill-quaternary);
+      }
+      &.is-disabled {
+        background-color: transparent;
+        border-color: var(--separator-primary);
+      }
+    }
+
+    // navRole extends 'normal' & variant == 'inline' | 'label'
+    &.is-label,
+    &.is-inline {
+      ::slotted(primaries-icon) {
+        color: var(--fill-secondary);
+      }
+
+      // hover is used for highlighted (not sure though)
+      &:hover {
+        ::slotted(primaries-icon) {
+          color: inherit;
+        }
+      }
+
+      &.is-selected {
+        color: #fff;
+        background-color: var(--tint);
+
+        ::slotted(primaries-icon) {
+          color: inherit;
+        }
+      }
+
+      &.is-disabled {
+        background-color: transparent;
+      }
+    }
+  }
+
+  // navRole == 'primary'
+  &.is-primary {
+    color: var(--tint);
+
+    // navRole == 'primary' & variant == 'bordered'
+    &.is-bordered {
+      border-color: var(--tint);
+
+      // hover is used for highlighted (not sure though)
+      &:hover {
+        background-color: transparent;
+      }
+
+      &.is-selected.is-disabled {
+        background-color: var(--fill-quaternary);
+      }
+      &.is-disabled {
+        background-color: transparent;
+        border-color: var(--separator-primary);
+      }
+    }
+
+    // navRole == 'primary' & variant == 'inline' | 'label'
+    &.is-label,
+    &.is-inline {
+      &.is-selected {
+        color: #fff;
+        background-color: var(--tint);
+      }
+
+      &.is-disabled {
+        background-color: transparent;
+        border-color: transparent;
+      }
+    }
+  }
+}

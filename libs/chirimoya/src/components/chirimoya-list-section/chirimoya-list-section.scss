@@ -1,0 +1,30 @@
+@import '../../styles/global.scss';
+
+$colors-component: ('label-secondary');
+@include get-colors-theme($colors-component);
+
+
+.list-section {
+    padding: 20px;
+}
+
+.list-section-header{
+    @include get-font-style('callout', 'medium');
+    padding: 14px;
+
+}
+.list-section-footer{
+    @include get-font-style('footnote', 'regular');
+    color: var(--label-secondary);
+    padding:14px;
+}
+
+.inset{
+    ::slotted(chirimoya-cell:last-of-type){
+        border-radius: 0 0 10px 10px;
+    }
+    ::slotted(chirimoya-cell:first-of-type){
+        border-radius: 10px 10px 0 0;
+    }   
+    
+}

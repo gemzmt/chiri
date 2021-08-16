@@ -1,0 +1,59 @@
+@import '../../styles/global.scss';
+
+$colors-component: (
+  'complementary-red',
+  'focus-ring',
+  'fill-tertiary'
+);
+
+@include get-colors-theme($colors-component);
+
+::slotted(primaries-icon[slot="trailing-icon"]) {
+  color: var(--fill-tertiary);
+  margin: 3px 0 0 10px;
+}
+
+.form-cell-container {
+  padding-left: 16px;
+  &:focus-within {
+    .form-cell-body::before {
+      transform: scaleX(1);
+    }
+  }
+}
+
+.form-cell-body {
+  padding: 0 16px 2px 0;
+  align-items: center;
+  display: flex;
+  position: relative;
+  .form-cell-body-leading {
+    flex: 1 1 80%;
+  }
+  &::before {
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 100%;
+    bottom: 0;
+    background: var(--focus-ring);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+}
+
+.form-cell-error {
+  display: flex;
+  align-items: center;
+  color: var(--complementary-red);
+  padding-bottom: 8px;
+  line-height: 18px;
+  font-size: 13px;
+}
+
+.icon-error {
+  font-size: 15px;
+  color: var(--complementary-red);
+  margin-right: 6px;
+}

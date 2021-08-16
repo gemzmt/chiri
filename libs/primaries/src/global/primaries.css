@@ -1,0 +1,7 @@
+@font-face {
+    font-family: "primaries";
+    src: url("../assets/fonts/primaries.ttf?35cc757817650614b53922d9aebefa53") format("truetype"),
+url("../assets/fonts/primaries.eot?35cc757817650614b53922d9aebefa53#iefix") format("embedded-opentype"),
+url("../assets/fonts/primaries.woff2?35cc757817650614b53922d9aebefa53") format("woff2"),
+url("../assets/fonts/primaries.woff?35cc757817650614b53922d9aebefa53") format("woff");
+}

@@ -1,0 +1,5 @@
+src/components.ts linguist-generated=true
+src/react-component-lib/createComponent.tsx linguist-generated=true
+src/react-component-lib/createOverlayComponent.tsx linguist-generated=true
+src/react-component-lib/utils/case.ts linguist-generated=true
+src/react-component-lib/utils/index.tsx linguist-generated=true

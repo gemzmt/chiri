@@ -1,0 +1,79 @@
+@import '../../styles/global.scss';
+@import '../../utils/internals/button.scss';
+
+
+$colors-component: (
+  'label-secondary',
+  'label-tertiary',
+  'fill-quaternary',
+  'tint',
+  'transparent-color',
+);
+
+@include get-colors-theme($colors-component);
+
+
+.chiri-tab-bar-container {
+  display: inline-flex;
+  height: 48px;
+  position: relative;
+}
+
+.chiri-tab-bar-item {
+  @include get-font-style('callout', 'medium');
+  color: var(--label-tertiary);
+  text-decoration: none;
+  padding: 0 16px;
+  display: inline-flex;
+}
+
+.chiri-tab-bar-item:hover{
+  background-color: var(--transparent);
+  color: var(--label-secondary);
+}
+
+.chiri-tab-bar-item:focus{
+  color: var(--label-secondary);
+}
+
+.chiri-tab-bar-item:after {
+  background-color: var(--fill-quaternary);
+  color: var(--label-secondary);
+  content: '';
+  position: absolute;
+  border-radius: 8px;
+  top: 5px;
+  left: 5px;
+  right:5px;
+  bottom: 5px;
+  opacity: 0;
+}
+
+.chiri-tab-bar-item:hover:after {
+  opacity: 1;
+}
+
+.chiri-tab-bar-item:before {
+  inset: 6px;
+}
+
+.is-active-container::after {
+  content: '';
+  background-color: var(--tint);
+  margin-top: 10px;
+  height: 3px;
+  width: 100%;
+  position: absolute;
+  bottom:0;
+}
+.is-active-container .chiri-tab-bar-item {
+  @include get-font-style('callout', 'bold');
+  color: var(--tint);
+}
+.is-active-container .chiri-tab-bar-item:after {
+  background-color: var(--transparent);
+}
+.is-active-container .chiri-tab-bar-item:hover {
+  background-color: var(--transparent);
+  color: var(--tint);
+}

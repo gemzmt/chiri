@@ -1,0 +1,12 @@
+@import '../../styles/global.scss';
+
+:host {
+  display: block;
+}
+
+.chirimoya-tab-bar {
+  display: flex;
+  justify-content: center;
+  align-content: flex-end;
+  height: 51px;
+}
